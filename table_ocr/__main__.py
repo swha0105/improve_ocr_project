@@ -5,7 +5,7 @@ import requests
 import table_ocr.util
 import table_ocr.extract_tables
 import table_ocr.extract_cells
-import table_ocr.ocr_image
+import ocr_image
 import table_ocr.ocr_to_csv
 def download_image_to_tempdir(url, filename=None):
     if filename is None:
@@ -31,7 +31,7 @@ def main(filename):
             print(f"Processing table {table}.")
             cells = table_ocr.extract_cells.main(table)
             ocr = [
-                table_ocr.ocr_image.main(cell, None)
+                ocr_image.main(cell, None)
                 for cell in cells
             ]
             print("Extracted {} cells from {}".format(len(ocr), table))
